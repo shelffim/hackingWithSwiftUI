@@ -1,102 +1,69 @@
 import UIKit
 
-var score=85
-
-if score>80 {
-    print("Great job!")
-}
-
-let speed=88
-let percentage=85
-var age=18
-
-if speed >= 88 {
-    print("Where we're going we don't need roads.")
-}
-
-if percentage < 85 {
-    print("Sorry, you failed the test.")
-}
+let age = 16
 
 if age >= 18 {
-    print("You're eligible to vote")
+    print("You can vote in the next election.")
+} else {
+    print("Sorry, you're too young to vote.")
 }
 
-let ourName = "Dave Lister"
-let friendName = "Arnold Rimer"
+let a = false
+let b = true
 
-if ourName < friendName {
-    print("It's \(ourName) vs \(friendName)")
+if a {
+    print("Code to run if a is true")
+} else if b {
+    print("Code to run if a is false but b is true")
+} else {
+    print("Code to run if both a and b are false")
 }
 
-if ourName > friendName {
-    print("It's \(friendName) vs \(ourName)")
+let temp = 25
+
+if temp > 20 && temp < 30 {
+    print("It's a nice day.")
 }
 
-var numbers=[1,2,3]
+let userAge = 14
+let hasParentalConsent = true
 
-numbers.append(4)
-
-if numbers.count > 3 {
-    numbers.remove(at: 0)
+if userAge >= 18 || hasParentalConsent {
+    print("You can buy the game")
 }
 
-print(numbers)
-
-let country = "Canada"
-
-if country == "Australia" {
-    print("G'day!")
+enum TransportOption {
+    case airplane, helicopter, bicycle, car, scooter
 }
 
-let name = "Taylor Swift"
+let transport = TransportOption.airplane
 
-if name != "Anonymous" {
-    print("Welcome, \(name)")
+if transport == .airplane || transport == .helicopter {
+    print("Let's fly!")
+} else if transport == .bicycle {
+    print("I hope there's a bike path..")
+} else if transport == .car {
+    print("Time to get stuck in traffic.")
+} else {
+    print("I'm going to hire a scooter now!")
 }
 
-var username="taylorswift13"
+let score = 9001
 
-if username == "" {
-    username = "Anonymous"
-}
-if username.count == 0 {
-    username = "Anonymous"
-}
-
-if username.isEmpty == true {
-    username = "Anonymous"
+if score > 9000 {
+    print("It's over 9000!")
+} else if score == 9000 {
+    print("Ite;s exactly 9000!")
+} else {
+    print("It's not over 9000!")
 }
 
-if username.isEmpty {
-    username = "Anonymous"
+let isOwner = true
+let isAdmin = false
+let isEditingEnabled = true
+
+if (isOwner == true && isEditingEnabled) || isAdmin == true {
+    print("You can delete this post")
 }
 
-print("Welcome, \(username)!")
-
-let firstName = "Paul"
-let secondName = "Sophie"
-
-let firstAge = 40
-let secondAge = 10
-
-print(firstName == secondName)
-print(firstName != secondName)
-print(firstName < secondName)
-print(firstName >= secondName)
-
-print(firstAge == secondAge)
-print(firstAge != secondAge)
-print(firstAge < secondAge)
-print(firstAge >= secondAge)
-
-enum Sizes: Comparable {
-    case small
-    case medium
-    case large
-}
-
-let first = Sizes.small
-let second = Sizes.large
-print(first < second)
 
