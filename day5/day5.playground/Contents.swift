@@ -1,69 +1,78 @@
 import UIKit
 
-let age = 16
+enum Weather {
+    case sun, rain, wind, snow, unknown
+}
 
-if age >= 18 {
-    print("You can vote in the next election.")
+let forecast = Weather.sun
+
+if forecast == .sun {
+    print("It should be a nice day.")
+} else if forecast == .rain {
+    print("Pack an umbrella.")
+} else if forecast == .wind {
+    print("Wear something warm")
+} else if forecast == .rain {
+    print("School is cancelled.")
 } else {
-    print("Sorry, you're too young to vote.")
+    print("Our forecast generator is broken!")
 }
 
-let a = false
-let b = true
-
-if a {
-    print("Code to run if a is true")
-} else if b {
-    print("Code to run if a is false but b is true")
-} else {
-    print("Code to run if both a and b are false")
+switch forecast {
+case .sun:
+    print("It should be a nice day.")
+case .rain:
+    print("Pack an umbrella.")
+case .wind:
+    print("Wear something warm")
+case .snow:
+    print("School is cancelled.")
+case .unknown:
+    print("Our forecast generator is broken!")
 }
 
-let temp = 25
+let place = "Metropolis"
 
-if temp > 20 && temp < 30 {
-    print("It's a nice day.")
+switch place {
+case "Gotham":
+    print("You're Batman!")
+case "Meta-City One":
+    print("You're Judge Dredd!")
+case "Wakanda":
+    print("You're Black Panther!")
+default :
+    print("Who are you?")
 }
 
-let userAge = 14
-let hasParentalConsent = true
+let day = 5
+print("My true love gave to me...")
 
-if userAge >= 18 || hasParentalConsent {
-    print("You can buy the game")
+switch day {
+case 5:
+    print("5 golden rings")
+case 4:
+    print("4 cakking birds")
+case 3:
+    print("3 French hens")
+case 2:
+    print("2 turtle doves")
+default:
+    print("A partridge in a pear tree")
 }
 
-enum TransportOption {
-    case airplane, helicopter, bicycle, car, scooter
+switch day {
+case 5:
+    print("5 golden rings")
+    fallthrough
+case 4:
+    print("4 cakking birds")
+    fallthrough
+case 3:
+    print("3 French hens")
+    fallthrough
+case 2:
+    print("2 turtle doves")
+    fallthrough
+default:
+    print("A partridge in a pear tree")
 }
-
-let transport = TransportOption.airplane
-
-if transport == .airplane || transport == .helicopter {
-    print("Let's fly!")
-} else if transport == .bicycle {
-    print("I hope there's a bike path..")
-} else if transport == .car {
-    print("Time to get stuck in traffic.")
-} else {
-    print("I'm going to hire a scooter now!")
-}
-
-let score = 9001
-
-if score > 9000 {
-    print("It's over 9000!")
-} else if score == 9000 {
-    print("Ite;s exactly 9000!")
-} else {
-    print("It's not over 9000!")
-}
-
-let isOwner = true
-let isAdmin = false
-let isEditingEnabled = true
-
-if (isOwner == true && isEditingEnabled) || isAdmin == true {
-    print("You can delete this post")
-}
-
-
