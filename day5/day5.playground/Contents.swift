@@ -1,78 +1,36 @@
 import UIKit
 
-enum Weather {
-    case sun, rain, wind, snow, unknown
-}
+let age = 18
+let conVote = age >= 18 ? "Yes" : "No"
 
-let forecast = Weather.sun
+let hour = 23
 
-if forecast == .sun {
-    print("It should be a nice day.")
-} else if forecast == .rain {
-    print("Pack an umbrella.")
-} else if forecast == .wind {
-    print("Wear something warm")
-} else if forecast == .rain {
-    print("School is cancelled.")
+if hour < 12 {
+    print("It's before noon")
 } else {
-    print("Our forecast generator is broken!")
+    print("It's after noon")
 }
 
-switch forecast {
-case .sun:
-    print("It should be a nice day.")
-case .rain:
-    print("Pack an umbrella.")
-case .wind:
-    print("Wear something warm")
-case .snow:
-    print("School is cancelled.")
-case .unknown:
-    print("Our forecast generator is broken!")
+print(hour < 12 ? "It's before noon" : "It's after noon")
+
+let names=["Jayne","Kaylee","Mal"]
+let crewCount = names.isEmpty ? "No one" : "\(names.count) people"
+print(crewCount)
+
+enum Theme {
+    case light, dark
 }
 
-let place = "Metropolis"
+let theme = Theme.dark
 
-switch place {
-case "Gotham":
-    print("You're Batman!")
-case "Meta-City One":
-    print("You're Judge Dredd!")
-case "Wakanda":
-    print("You're Black Panther!")
-default :
+let background = theme == .dark ? "black" : "white"
+print(background)
+
+let isAuthenticated = true
+print(isAuthenticated ? "Welcome!" : "Who are you?")
+
+if isAuthenticated {
+    print("Welcome")
+}  else {
     print("Who are you?")
-}
-
-let day = 5
-print("My true love gave to me...")
-
-switch day {
-case 5:
-    print("5 golden rings")
-case 4:
-    print("4 cakking birds")
-case 3:
-    print("3 French hens")
-case 2:
-    print("2 turtle doves")
-default:
-    print("A partridge in a pear tree")
-}
-
-switch day {
-case 5:
-    print("5 golden rings")
-    fallthrough
-case 4:
-    print("4 cakking birds")
-    fallthrough
-case 3:
-    print("3 French hens")
-    fallthrough
-case 2:
-    print("2 turtle doves")
-    fallthrough
-default:
-    print("A partridge in a pear tree")
 }
