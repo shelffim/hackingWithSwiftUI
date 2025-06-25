@@ -1,77 +1,50 @@
 import UIKit
 
-let root = sqrt(169)
-print(root)
-
-func rollDice() -> Int {
-    return Int.random(in: 1...6)
+func isUpeercase(string: String) -> Bool {
+    string == string.uppercased()
 }
 
-let result = rollDice()
-print(result)
-
-func areLettersIdentical(s1: String, s2: String) -> Bool {
-    return s1.sorted()==s2.sorted()
+func getUser() -> [String] {
+    ["Taylor", "Swift"]
 }
 
-func areLettersIdentical2(s1: String, s2: String) -> Bool {
-    s1.sorted()==s2.sorted()
+var user=getUser()
+print("Name: \(user[0]) \(user[1])")
+
+func getUser2() -> [String: String] {
+    ["fisrtName":"Taylor", "lastName": "Swift"]
 }
 
-print(areLettersIdentical(s1: "abc", s2: "cab"))
-print(areLettersIdentical2(s1: "abc", s2: "cab"))
+let user2 = getUser2()
+print("Name: \(user2["fisrtName",default:"Anonymous"]) \(user2["lastName",default:"Anonymous"])")
 
-func rollDice2() -> Int {
-    Int.random(in: 1...6)
+func getUser3() -> (firstName: String, lastName: String) {
+    (firstName: "Taylor", lastName: "Swift")
 }
 
-func pythhgoras(a: Double, b: Double) -> Double {
-    sqrt(a * a + b * b)
+let user3=getUser3()
+print("Name: \(user3.firstName) \(user3.lastName)")
+
+func getUser4() -> (firstName: String, lastName: String) {
+    ("Taylor", "Swift")
 }
 
-let c = pythhgoras(a: 3, b: 4)
-print(c)
-
-func doMath() -> Int {
-    return 5 + 5
+func getUser5() -> (String, String) {
+    ("Taylor", "Swift")
 }
 
-func doMoreMath() -> Int {
-    5 + 5
-}
+let user5 = getUser5()
+print("Name: \(user5.0) \(user5.1)")
 
-func greet(name: String) -> String {
-    if name == "Taylor Swift" {
-        "Oh wow!"
-    } else {
-        "Hello, \(name)"
-    }
-}
+let user6=getUser3()
+let firstName=user6.firstName
+let lastName=user6.lastName
 
-//not valid
-//func greet(name: String) -> String {
-//    if name == "Taylor Swift" {
-//        "Oh wow!"
-//    } else {
-//        let greeting="Hello, \(name)"
-//        return greeting
-//    }
-//}
+print("Name: \(firstName) \(lastName)")
 
-func greet2(name: String) -> String {
-    let response = if name == "Taylor Swift" {
-        "Oh wow!"
-    } else {
-        "Hello, \(name)"
-    }
-    
-    return response
-}
+let (firstName1,lastName1) = getUser3()
+print("Name: \(firstName1) \(lastName1)")
 
-func greet3(name: String) -> String {
-    let response = name == "Taylor Swift" ? "Oh wow!" : "Hello, \(name)"
-    return response
-}
+let (firstName2, _) = getUser3()
+print("Name: \(firstName)")
 
-print(greet(name: "Taylor Swift"))
-print(greet3(name: "Taylor Swift"))
