@@ -1,50 +1,32 @@
 import UIKit
 
-func isUpeercase(string: String) -> Bool {
+func rollDice(sides: Int, count: Int) -> [Int] {
+    var rolls = [Int]()
+    
+    for _ in 1...count {
+        let roll = Int.random(in: 1...sides)
+        rolls.append(roll)
+    }
+    
+    return rolls
+}
+
+let rolls = rollDice(sides: 6, count: 4)
+
+let lyric = "I see a red door and I want it painted black"
+print(lyric.hasPrefix("I see"))
+
+func isUppercase(_ string: String) -> Bool {
     string == string.uppercased()
 }
 
-func getUser() -> [String] {
-    ["Taylor", "Swift"]
+let string="HELLO, WORLD"
+let result = isUppercase(string)
+
+func printTimesTables(for number: Int) {
+    for i in 1...12 {
+        print("\(i) x \(number) is \(i * number)")
+    }
 }
 
-var user=getUser()
-print("Name: \(user[0]) \(user[1])")
-
-func getUser2() -> [String: String] {
-    ["fisrtName":"Taylor", "lastName": "Swift"]
-}
-
-let user2 = getUser2()
-print("Name: \(user2["fisrtName",default:"Anonymous"]) \(user2["lastName",default:"Anonymous"])")
-
-func getUser3() -> (firstName: String, lastName: String) {
-    (firstName: "Taylor", lastName: "Swift")
-}
-
-let user3=getUser3()
-print("Name: \(user3.firstName) \(user3.lastName)")
-
-func getUser4() -> (firstName: String, lastName: String) {
-    ("Taylor", "Swift")
-}
-
-func getUser5() -> (String, String) {
-    ("Taylor", "Swift")
-}
-
-let user5 = getUser5()
-print("Name: \(user5.0) \(user5.1)")
-
-let user6=getUser3()
-let firstName=user6.firstName
-let lastName=user6.lastName
-
-print("Name: \(firstName) \(lastName)")
-
-let (firstName1,lastName1) = getUser3()
-print("Name: \(firstName1) \(lastName1)")
-
-let (firstName2, _) = getUser3()
-print("Name: \(firstName)")
-
+printTimesTables(for: 5)
