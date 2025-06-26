@@ -1,38 +1,52 @@
 import UIKit
 
-let team = ["Gloria", "Suzanne", "Piper", "Tiffany", "Tasha"]
+func greetUser() {
+    print("Hi there!")
+}
 
-let captainFirstTeam = team.sorted {
-    if $0 == "Suzanne" {
-        return true
-    } else if $1 == "Suzanne" {
-        return false
+greetUser()
+
+var greetCopy: () -> Void = greetUser
+greetCopy()
+
+func makeArray(size: Int, using generator: () -> Int) -> [Int] {
+    var numbers = [Int]()
+    
+    for _ in 0..<size {
+        let newNumber = generator()
+        numbers.append(newNumber)
     }
     
-    return $0 <  $1
+    return numbers
 }
 
-print(captainFirstTeam)
-
-let reverseTeam = team.sorted {
-    $0 > $1
+let rolls = makeArray(size: 50) {
+    Int.random(in: 1...20)
 }
 
-let tOnly = team.filter { $0.hasPrefix("T")}
-print(tOnly)
+print(rolls)
 
-let uppercaseTeam =  team.map { $0.uppercased() }
-print(uppercaseTeam)
-
-func animate(duration: Double, animations: () -> Void) {
-    print("Starting a \(duration) second animation...")
-    animations()
+func generateNumber() -> Int {
+    Int.random(in: 1...20)
 }
 
-animate(duration: 3, animations: {
-    print("Fade out the image")
-})
+let newRolls = makeArray(size: 60, using: generateNumber)
+print(newRolls)
 
-animate(duration:3) {
-    print("Fade out the image")
+func doImportantWork(first: () -> Void, second: () -> Void, third: () -> Void) {
+    print("About to start first work")
+    first()
+    print("About to start second work")
+    first()
+    print("About to start third work")
+    first()
+    print("Done!")
+}
+
+doImportantWork {
+    print("This is the first work")
+} second: {
+    print("This is the second work")
+} third: {
+    print("This is the third work")
 }
