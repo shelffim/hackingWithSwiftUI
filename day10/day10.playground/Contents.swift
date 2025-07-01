@@ -1,34 +1,49 @@
 import UIKit
 
-struct Game {
-    var score = 0 {
-        didSet {
-            print("Score is now \(score)")
-        }
+struct Player {
+    let name: String
+    let number: Int
+    
+    init(name: String) {
+        self.name = name
+        self.number = Int.random(in: 1...99)
     }
 }
 
-var game = Game()
-game.score += 10
-game.score -= 3
-game.score += 1
+let player = Player(name: "Megan R")
+print(player.number)
 
-struct App {
-    var contacts = [String]() {
-        willSet {
-            print("Current value is: \(contacts)")
-            print("New value will be: \(newValue)")
-        }
-        
-        didSet {
-            print("There are now \(contacts.count) contacts.")
-            print("Old value was \(oldValue)")
-        }
+struct Employee {
+    var name: String
+    var yearsActive = 0
+}
+
+extension Employee {
+    init() {
+        self.name = "Anonymous"
+        print("Creting an anonymous employee")
     }
 }
 
-var app = App()
-app.contacts.append("Adrian E")
-app.contacts.append("Allen W")
-app.contacts.append("Ish S")
+// creating a named employee now works
+let roslin = Employee(name: "Roslin")
 
+// as does creating an anonymous employee
+let anon = Employee()
+
+struct Student {
+    var name: String
+    var bestFriend: String
+    
+    init(name: String, bestFriend: String) {
+        print("Enrolling \(name) in class...")
+        self.name = name
+        self.bestFriend = bestFriend
+    }
+    
+//    init(name studentName: String, bestFriend studentBestFriend: String) {
+//        print("Enrolling \(studentName) in class...")
+//        name = studentName
+//        bestFriend = studentBestFriend
+//    }
+}
