@@ -1,113 +1,70 @@
 import UIKit
 
 class Animal {
-    let legCount : Int
-    
-    init(legCount: Int) {
-        self.legCount = legCount
-    }
+    let legs: Int
+    init (legs: Int) { self.legs = max(legs,0) }
 }
 
 class Dog: Animal {
-    let barkSpeak: String
-    
-    init(barkSpeak: String, legCount: Int) {
-        self.barkSpeak = barkSpeak
-        super.init(legCount: legCount)
+    init() {
+        super.init(legs: 4)
     }
     
-    func bark() {
-        print("\(self.barkSpeak)! \(self.barkSpeak)!")
-    }
-}
-
-class Corgi: Dog {
-    let name: String
-    
-    init(barkSpeak: String, legCount: Int, name: String) {
-        self.name = name
-        super.init(barkSpeak: barkSpeak, legCount: legCount)
-    }
-    
-    override func bark() {
-        print("\(self.barkSpeak)!")
-    }
-}
-
-class Poodle: Dog {
-    let name: String
-    
-    init(barkSpeak: String, legCount: Int, name: String) {
-        self.name = name
-        super.init(barkSpeak: barkSpeak, legCount: legCount)
-    }
-    
-    override func bark() {
-        print("\(self.barkSpeak)~!!")
+    public func speak() {
+        print("bark")
     }
 }
 
 class Cat: Animal {
-    let speakString: String
     let isTame: Bool
-    
-    
-    init(speakString: String, legCount: Int, isTame: Bool) {
-        self.isTame = isTame
-        self.speakString = speakString
-        super.init(legCount: legCount)
+    init(isTame isTameFromInit: Bool) {
+        isTame = isTameFromInit
+        super.init(legs: 4)
     }
-    
-    func speak() {
-        if self.isTame {
-            print("\(self.speakString)~~+")
-        } else {
-            print("\(self.speakString)~~-")
-        }
+    public func speak() {
+        print("meow?")
     }
-    
+}
+
+class Corgi : Dog {
+    override func speak() {
+        print("Yap Yap Yap!")
+    }
+}
+
+class Poodle: Dog {
+    override func speak() {
+        print("Woof!")
+    }
 }
 
 class Persian: Cat {
-    let name: String
-    
-    init(speakString: String, legCount: Int, isTame: Bool, name: String) {
-        self.name = name
-        super.init(speakString: speakString, legCount: legCount, isTame: isTame)
+    init() {
+        super.init(isTame: true)
     }
-    
     override func speak() {
-        if self.isTame {
-            print("\(self.speakString)~~^+")
-        } else {
-            print("\(self.speakString)~~^-")
-        }
+        print("Yowwwwwwww Yowwwwwwww")
     }
 }
-
 class Lion: Cat {
-    let name: String
-    
-    init(speakString: String, legCount: Int, isTame: Bool, name: String) {
-        self.name = name
-        super.init(speakString: speakString, legCount: legCount, isTame: isTame)
+    init() {
+        super.init(isTame: false)
     }
-    
     override func speak() {
-        if self.isTame {
-            print("\(self.speakString)&&+")
-        } else {
-            print("\(self.speakString)&&-")
-        }
+        print("Roooooooooor")
     }
-    
 }
 
-let corgi = Corgi(barkSpeak: "Cor", legCount: 4, name: "robert")
-corgi.bark( )
-let poodle = Poodle(barkSpeak: "Pol", legCount: 4, name: "Taylor")
-poodle.bark( )
-let persian = Persian(speakString: "Pers", legCount: 4, isTame: true, name: "Cup")
-persian.speak()
-let lion = Lion(speakString: "Li", legCount: 4, isTame: false, name: "Plate")
-lion.speak()
+let larry = Corgi()    // create an instance of the Corgi class
+let moe   = Poodle()
+let curly = Persian()
+let shemp = Lion()
+
+print ("Larry is a dog with \(larry.legs) legs. Larry says ")
+larry.speak() ; print("\n")
+print ("Moe is a dog with \(moe.legs) legs. Moe says ")
+moe.speak() ; print("\n")
+print ("Curly is a " + (curly.isTame ? "tame " : "wild ") + "cat with \(curly.legs) legs. Curly says ")
+curly.speak() ; print ("\n")
+print ("Shemp is a " + (shemp.isTame ? "tame " : "wild ") + "cat with \(shemp.legs) legs. Shemp says")
+shemp.speak() ; print("\n")
