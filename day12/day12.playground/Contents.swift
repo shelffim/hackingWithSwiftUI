@@ -1,38 +1,33 @@
 import UIKit
 
 class User {
-    var username = "Anonymous"
-}
-
-var user1 = User()
-
-var user2 = user1
-user2.username = "Taylor"
-
-print(user1.username)
-print(user2.username)
-
-class DeepUser {
-    var username = "Anonymous"
+    let id: Int
     
-    func copy() -> User {
-        let user = User()
-        user.username = username
-        return user
+    init(id: Int) {
+        self.id = id
+        print("User \(id): I'm alive!")
     }
+    
+    deinit {
+        print("User \(id): I'm dead!")
+    }
+    
 }
 
-var user3 = DeepUser()
 
-var user4 = user3.copy()
-user4.username = "Swift"
+for i in 1...3 {
+    let user = User(id: i)
+    print("USer \(user.id): I'm in control!")
+}
 
-print(user3.username)
-print(user4.username)
+var users = [User]()
 
-var message = "Welcome"
-var greeting = message
-greeting = "Hello"
+for i in 1...3 {
+    let user = User(id: i)
+    print("User \(user.id): I'm in control!")
+    users.append(user)
+}
 
-print(message)
-print(greeting)
+print("Loop is finished!")
+users.removeAll()
+print("Array is clear!")
