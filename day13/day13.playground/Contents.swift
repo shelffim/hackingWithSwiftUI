@@ -1,48 +1,40 @@
 import UIKit
 
-extension String {
-    func trimmed() -> String {
-        self.trimmingCharacters(in: .whitespacesAndNewlines)
-    }
-    
-    mutating func trim() {
-        self = self.trimmed()
-    }
-    
-    var lines: [String] {
-        self.components(separatedBy: .newlines)
+extension Collection {
+    var isNotEmpty: Bool {
+        isEmpty == false
     }
 }
 
+let guests = ["Mario", "Luigi","Peach"]
 
-
-var quote = "   The truth is rarely pure and never simple   "
-let trimmed = quote.trimmingCharacters(in: .whitespacesAndNewlines)
-
-quote.trim()
-
-let lyrics = """
-But I keep cruising
-Can't stop, won't stop moving
-It's like I got this music in my mind
-Saying it's gonna be alright
-"""
-
-print(lyrics.lines.count)
-
-struct Book {
-    let title: String
-    let pageCount: Int
-    let readingHours: Int
-    
+if guests.isNotEmpty {
+    print("Guest count: \(guests.count)")
 }
 
-extension Book {
-    init(title: String, pageCount: Int) {
-        self.title = title
-        self.pageCount = pageCount
-        self.readingHours = pageCount / 50
+protocol Person {
+    var name: String { get }
+    func sayHello()
+}
+
+extension Person {
+    func sayHello() {
+        print("Hi, I'm \(name)")
     }
 }
 
-let lotr = Book(title: "Lord of the Rings", pageCount: 1178, readingHours: 24)
+struct Employee: Person {
+    let name: String
+}
+
+let taylor = Employee(name: "Taylor Swift")
+taylor.sayHello()
+
+let numbers = [4,8,15,16]
+let allEven = numbers.allSatisfy { $0.isMultiple(of: 2) }
+
+let numbers2 = Set([4,8,15,16])
+let allEven2 = numbers2.allSatisfy { $0.isMultiple(of: 2) }
+
+let numbers3 = ["four": 4, "eight": 8, "fifteen": 15, "sixteen": 16]
+let allEven3 = numbers3.allSatisfy { $0.value.isMultiple(of: 2) }
