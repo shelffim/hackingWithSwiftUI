@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:SwiftLibraryChallenge}",
+      "name": "Debug SwiftLibraryChallenge",
+      "program": "${workspaceFolder:SwiftLibraryChallenge}/.build/debug/SwiftLibraryChallenge",
+      "preLaunchTask": "swift: Build Debug SwiftLibraryChallenge"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:SwiftLibraryChallenge}",
+      "name": "Release SwiftLibraryChallenge",
+      "program": "${workspaceFolder:SwiftLibraryChallenge}/.build/release/SwiftLibraryChallenge",
+      "preLaunchTask": "swift: Build Release SwiftLibraryChallenge"
+    }
+  ]
+}
