@@ -1,59 +1,36 @@
 import UIKit
 
-let opposites = [
-    "Mario": "Wario",
-    "Luigi": "Waluigi"
-]
-
-if let marioOpposite = opposites["Mario"] {
-    print("Mario's opposite is \(marioOpposite)")
-}
-
-var username: String? = nil
-
-if let unwrappedName = username {
-    print("We got a user: \(unwrappedName)")
-} else {
-    print("The optional was empty.")
-}
-
-func square(number: Int) -> Int {
-    number * number
-}
-
-var number: Int? = nil
-if let unwrappedNumber = number {
-    print(square(number: unwrappedNumber))
-}
-if let number = number {
-    print(square(number: number))
-}
-
-func findGreatestValueInList(list: [Int]) -> Int? {
-    if list.count == 0 {
-        return nil
+func printSquare(of number: Int?) {
+    guard let number = number else {
+        print("Missing input")
+        return
     }
     
-    var greatestValue =  -1
-    for number in list {
-        if number > greatestValue {
-            greatestValue = number
-        }
-//        print(number)
+    var myVar: Int? = 3
+
+    if let unwrapped = myVar {
+        print("Run if myVar has a value inside")
     }
-    return greatestValue
+
+    guard let unwrapped = myVar else {
+        print("Run if myVar doesn't have a value inside")
+    }
+    
+    print("\(number) x \(number) = \(number * number)")
 }
 
-//findGreatestValueInList(list: [1,2,3,1,10,4,200])
-findGreatestValueInList(list: [-3, -2, -1, 0, 1, 100, 2])
-
-func getUsername() -> String? {
-    "Taylor"
+func getMeaningOfLife() -> Int? {
+    42
 }
 
-if let username = getUsername() {
-    print("Username is \(username)")
-} else {
-    print("No username")
+func printMeaningOfLife() {
+//    if let name = getMeaningOfLife() {
+//        print(name)
+//    }
+    
+    guard let name = getMeaningOfLife() else {
+        return
+    }
+    
+    print(name)
 }
-
