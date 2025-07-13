@@ -2,10 +2,8 @@ import UIKit
 
 let optionalArr : [Int]? = []
 
-if let answer = optionalArr?.randomElement() {
-    print(answer)
-} else {
-    print(Int.random(in: 1...100))
+func randomInt(_ arr:[Int]?) -> Int {
+    return arr?.randomElement() ?? Int.random(in: 1...100)
 }
 
-
+print(randomInt(optionalArr))
