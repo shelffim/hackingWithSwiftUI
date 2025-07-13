@@ -1,36 +1,31 @@
 import UIKit
 
-func printSquare(of number: Int?) {
-    guard let number = number else {
-        print("Missing input")
-        return
-    }
-    
-    var myVar: Int? = 3
+let captains = [
+    "Enterprise": "Picard",
+    "Voyager": "Janeway",
+    "Defiant": "Sisko"
+]
 
-    if let unwrapped = myVar {
-        print("Run if myVar has a value inside")
-    }
+let new = captains["Serenity"] ?? "N/A"
 
-    guard let unwrapped = myVar else {
-        print("Run if myVar doesn't have a value inside")
-    }
-    
-    print("\(number) x \(number) = \(number * number)")
+let new1 = captains["Serenity", default: "N/A"]
+
+let tvShows = ["Archer", "babylon 5", "Red Lasso"]
+let favorite = tvShows.randomElement() ?? "None"
+
+struct Book {
+    let title: String
+    let author: String?
 }
 
-func getMeaningOfLife() -> Int? {
-    42
-}
+let book = Book(title: "Beowulf", author: nil)
+let author = book.author ?? "Unknown"
+print(author)
 
-func printMeaningOfLife() {
-//    if let name = getMeaningOfLife() {
-//        print(name)
-//    }
-    
-    guard let name = getMeaningOfLife() else {
-        return
-    }
-    
-    print(name)
-}
+let input = ""
+let number = Int(input) ?? 0
+print(number)
+
+let scores = ["Picard": 800, "Data": 7000, "Troi": 900]
+//let crusherScore = scores["Crusher"] ?? 0
+let crusherScore = scores["Crusher", default: 0]
