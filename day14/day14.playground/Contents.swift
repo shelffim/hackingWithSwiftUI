@@ -1,18 +1,12 @@
 import UIKit
 
-let names = ["Arya", "Bran", "Robb", "Sansa"]
-
-let chosen = names.randomElement()?.uppercased() ?? "No one"
-print("Next in line: \(chosen)")
-
-struct Book {
-    let title: String
-    let author: String?
+enum UserError: Error {
+    case badID, networkFailed
 }
 
-var book: Book? = nil
-let author = book?.author?.first?.uppercased() ?? "A"
-print(author)
+func getUser(id: Int) throws -> String {
+    throw UserError.networkFailed
+}
 
-let arts = ["Vincent": "van Gogh", "Pablo": "Picasso", "Claude": "Monet"]
-let surnameLetter = arts["Vincent"]?.first?.uppercased() ?? "?"
+let user = (try? getUser(id: 23)) ?? "Anonymous"
+print(user)
