@@ -1,0 +1,22 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:InventoryManagerChallenge}",
+      "name": "Debug InventoryManagerChallenge",
+      "program": "${workspaceFolder:InventoryManagerChallenge}/.build/debug/InventoryManagerChallenge",
+      "preLaunchTask": "swift: Build Debug InventoryManagerChallenge"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:InventoryManagerChallenge}",
+      "name": "Release InventoryManagerChallenge",
+      "program": "${workspaceFolder:InventoryManagerChallenge}/.build/release/InventoryManagerChallenge",
+      "preLaunchTask": "swift: Build Release InventoryManagerChallenge"
+    }
+  ]
+}
