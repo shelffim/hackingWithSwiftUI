@@ -545,3 +545,7 @@ func getUser(id: Int) throws -> String {
 if let user = try? getUser(id: 23) {
     print("User: \(user)")
 }
+
+let cdate = "20240715"
+let y = cdate.prefix(4)
+let d = cdate.suffix(2)
