@@ -1,6 +1,6 @@
 //
 //  ContentView.swift
-//  WeSplit
+//  project1
 //
 //  Created by 박현준 on 7/16/25.
 //
