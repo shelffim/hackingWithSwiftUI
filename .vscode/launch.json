@@ -1,0 +1,40 @@
+{
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/day12/AnimalSimulationChallenge",
+      "name": "Debug AnimalSimulationChallenge (day12/AnimalSimulationChallenge)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/day12/AnimalSimulationChallenge/.build/debug/AnimalSimulationChallenge",
+      "preLaunchTask": "swift: Build Debug AnimalSimulationChallenge (day12/AnimalSimulationChallenge)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/day12/AnimalSimulationChallenge",
+      "name": "Release AnimalSimulationChallenge (day12/AnimalSimulationChallenge)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/day12/AnimalSimulationChallenge/.build/release/AnimalSimulationChallenge",
+      "preLaunchTask": "swift: Build Release AnimalSimulationChallenge (day12/AnimalSimulationChallenge)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/day13/UserProfileChallenge",
+      "name": "Debug UserProfileChallenge (day13/UserProfileChallenge)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/day13/UserProfileChallenge/.build/debug/UserProfileChallenge",
+      "preLaunchTask": "swift: Build Debug UserProfileChallenge (day13/UserProfileChallenge)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/day13/UserProfileChallenge",
+      "name": "Release UserProfileChallenge (day13/UserProfileChallenge)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/day13/UserProfileChallenge/.build/release/UserProfileChallenge",
+      "preLaunchTask": "swift: Build Release UserProfileChallenge (day13/UserProfileChallenge)"
+    }
+  ]
+}
