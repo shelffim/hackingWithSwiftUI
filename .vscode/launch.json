@@ -35,6 +35,24 @@
       "name": "Release UserProfileChallenge (day13/UserProfileChallenge)",
       "program": "${workspaceFolder:hackingWithSwiftUI}/day13/UserProfileChallenge/.build/release/UserProfileChallenge",
       "preLaunchTask": "swift: Build Release UserProfileChallenge (day13/UserProfileChallenge)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/project1-assignment",
+      "name": "Debug project1-assignment (project1-assignment)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/project1-assignment/.build/debug/project1-assignment",
+      "preLaunchTask": "swift: Build Debug project1-assignment (project1-assignment)"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "${workspaceFolder:hackingWithSwiftUI}/project1-assignment",
+      "name": "Release project1-assignment (project1-assignment)",
+      "program": "${workspaceFolder:hackingWithSwiftUI}/project1-assignment/.build/release/project1-assignment",
+      "preLaunchTask": "swift: Build Release project1-assignment (project1-assignment)"
     }
   ]
 }

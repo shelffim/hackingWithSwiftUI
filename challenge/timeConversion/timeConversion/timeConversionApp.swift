@@ -1,14 +1,14 @@
 //
-//  project1App.swift
-//  project1
+//  timeConversionApp.swift
+//  timeConversion
 //
-//  Created by 박현준 on 7/16/25.
+//  Created by 박현준 on 7/18/25.
 //
 
 import SwiftUI
 
 @main
-struct project1App: App {
+struct timeConversionApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
