@@ -10,6 +10,10 @@ import SwiftUI
 struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    @State private var score = 0
+    @State private var message = ""
+    @State private var round = 1
+    @State private var buttonLabel = "Continue"
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -56,7 +60,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 
-                Text("Score: ???")
+                Text("Score: \(score)")
                     .foregroundStyle(.white)
                     .font(.title.bold())
                 
@@ -65,17 +69,42 @@ struct ContentView: View {
             .padding()
         }
         .alert(scoreTitle, isPresented: $showingScore) {
-            Button("Continue", action: askQuestion)
+//            Button {
+//                if round < 7 {
+//                    askQuestion()
+//                } else {
+//                    reset()
+//                }
+//            } label: {
+//                Text(buttonLabel)
+//            }
+            Button(buttonLabel, action: askQuestion)
         } message: {
-            Text("Your score is ???")
+            Text("\(message)\nYour score is \(score) / \(round).")
         }
+    }
+    
+    func isReset() {
+        if round == 8 {
+            
+        }
+    }
+    
+    func reset() {
+        score = 0
+        round = 1
+        scoreTitle = ""
+        message = ""
     }
     
     func flagTapped(_ number: Int) {
         if number == correctAnswer {
             scoreTitle = "Correct"
+            score += 1
+            message = "You got it right!"
         } else {
             scoreTitle = "Wrong"
+            message = "Nope, it's \(countries[number])"
         }
         
         showingScore = true
@@ -84,6 +113,14 @@ struct ContentView: View {
     func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        round += 1
+        if round < 8 {
+            buttonLabel = "Continue"
+        } else if round == 8 {
+            buttonLabel = "Finish"
+        } else {
+            reset()
+        }
     }
     
 }
