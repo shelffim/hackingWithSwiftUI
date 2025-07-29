@@ -34,11 +34,64 @@ struct ContentView: View {
         ZStack {
             // 배경 그라데이션
             LinearGradient(
-                colors: [.purple.opacity(0.3), .blue.opacity(0.3), .cyan.opacity(0.3)],
+                colors: [.purple.opacity(0.6), .blue.opacity(0.6), .cyan.opacity(0.6)],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
+            
+            // 상단 게임핸드 이모지 배경
+            VStack {
+                HStack(spacing: 15) {
+                    ForEach(0..<3) { index in
+                        Text(gameHandEmoji[index])
+                            .font(.system(size: 30))
+                            .foregroundStyle(.white.opacity(0.08))
+                    }
+                }
+                .rotationEffect(.degrees(10))
+                .offset(x: -20, y: 5)
+                
+                HStack(spacing: 15) {
+                    ForEach(0..<3) { index in
+                        Text(gameHandEmoji[index])
+                            .font(.system(size: 30))
+                            .foregroundStyle(.white.opacity(0.08))
+                    }
+                }
+                .rotationEffect(.degrees(-10))
+                .offset(x: 20, y: -5)
+                
+                Spacer()
+            }
+            .padding(.top, 30)
+            
+            // 하단 게임핸드 이모지 배경
+            VStack {
+                Spacer()
+                
+                HStack(spacing: 15) {
+                    ForEach(0..<3) { index in
+                        Text(gameHandEmoji[index])
+                            .font(.system(size: 30))
+                            .foregroundStyle(.white.opacity(0.08))
+                    }
+                }
+                .rotationEffect(.degrees(-10))
+                .offset(x: -20, y: -5)
+                
+                HStack(spacing: 15) {
+                    ForEach(0..<3) { index in
+                        Text(gameHandEmoji[index])
+                            .font(.system(size: 30))
+                            .foregroundStyle(.white.opacity(0.08))
+                    }
+                }
+                .rotationEffect(.degrees(10))
+                .offset(x: 20, y: 5)
+            }
+            .padding(.bottom, 30)
+            
             // 메인 콘텐츠
             
             VStack {
@@ -47,27 +100,68 @@ struct ContentView: View {
                 Text("Rock, Paper or Scissors")
                     .font(.largeTitle.weight(.bold))
                     .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                    .shadow(color: .black.opacity(0.5), radius: 3, x: 0, y: 2)
                 
-                VStack(spacing: 15) {
-                    // 플레이어 점수, 컴퓨터 가위바위보, 승패
-                    VStack {
-                        Text("Your score is")
-                            .font(.subheadline)
-                            .foregroundStyle(.white.opacity(0.8))
-                        Text("\(score)")
-                            .font(.title.bold())
-                            .foregroundStyle(.white)
+                VStack(spacing: 20) {
+                    // 라운드 정보
+                    HStack {
+                        Text("Round \(round)/10")
+                            .font(.headline)
+                            .foregroundStyle(.white.opacity(0.9))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(.white.opacity(0.2))
+                            )
                     }
                     
-                    VStack {
-                        Text(winLoseDraw[computerChoice])
+                    // 플레이어 점수
+                    VStack(spacing: 8) {
+                        Text("Your Score")
+                            .font(.headline)
+                            .foregroundStyle(.white)
+                        Text("\(score)")
+                            .font(.system(size: 48, weight: .bold, design: .rounded))
+                            .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.6), radius: 3, x: 0, y: 2)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.white.opacity(0.15))
+                            .stroke(.white.opacity(0.3), lineWidth: 1)
+                    )
+                    
+                    // 컴퓨터 선택 및 승패 조건
+                    VStack(spacing: 12) {
+                        Text("Computer's Goal")
                             .font(.subheadline)
+                            .foregroundStyle(.white)
+                        
+                        Text(winLoseDraw[computerChoice])
+                            .font(.title2.weight(.semibold))
                             .foregroundStyle(statusColor(winLoseDraw[computerChoice]))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 6)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(statusColor(winLoseDraw[computerChoice]).opacity(0.2))
+                            )
+                        
                         Text(gameHand[computerChoice])
                             .font(.largeTitle.weight(.bold))
                             .foregroundStyle(.white)
+                            .shadow(color: .black.opacity(0.6), radius: 3, x: 0, y: 2)
                     }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
+                    .background(
+                        RoundedRectangle(cornerRadius: 15)
+                            .fill(.white.opacity(0.1))
+                            .stroke(.white.opacity(0.2), lineWidth: 1)
+                    )
                     
                     HStack(spacing: 20) {
                         ForEach(0..<3) { number in
@@ -93,12 +187,15 @@ struct ContentView: View {
                 Spacer()
             }
         }
-        .alert("\(round) \n \(score)",isPresented: $isDone) {
-            Button("Retry", role: .cancel) {
+        .alert("게임 종료!", isPresented: $isDone) {
+            Button("다시 시작", role: .cancel) {
                 round = 1
                 score = 0
                 computerChoice = Int.random(in: 0..<3)
+                winLoseDraw = ["Win", "Lose", "Draw"].shuffled()
             }
+        } message: {
+            Text("총 \(round)라운드를 진행했습니다.\n최종 점수: \(score)점")
         }
     }
     
@@ -116,7 +213,6 @@ struct ContentView: View {
     }
     
     func choseRPS(_ number: Int) {
-//        print("\(computerChoice) status: \(winLoseDraw[computerChoice]) player: \(gameHand[number]) computer: \(gameHand[computerChoice])")
         switch winLoseDraw[computerChoice] {
         case "Win":
             if gameHand[number] == windHand[computerChoice] {
@@ -151,6 +247,8 @@ struct ContentView: View {
         } else {
             round += 1
             computerChoice = Int.random(in: 0..<3)
+            // 매 라운드마다 승패 조건을 랜덤하게 변경
+            winLoseDraw = ["Win", "Lose", "Draw"].shuffled()
         }
     }
     
