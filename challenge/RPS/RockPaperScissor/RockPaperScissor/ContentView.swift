@@ -141,13 +141,14 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                         
                         Text(winLoseDraw[computerChoice])
-                            .font(.title2.weight(.semibold))
+                            .font(.title2.weight(.bold))
                             .foregroundStyle(statusColor(winLoseDraw[computerChoice]))
+                            .shadow(color: .black.opacity(0.5), radius: 2, x: 0, y: 1)
                             .padding(.horizontal, 16)
                             .padding(.vertical, 6)
                             .background(
                                 RoundedRectangle(cornerRadius: 12)
-                                    .fill(statusColor(winLoseDraw[computerChoice]).opacity(0.2))
+                                    .fill(statusColor(winLoseDraw[computerChoice]).opacity(0.3))
                             )
                         
                         Text(gameHand[computerChoice])
@@ -202,13 +203,13 @@ struct ContentView: View {
     func statusColor(_ status: String) -> Color {
         switch status {
         case "Win":
-            return .green
+            return .green.opacity(0.9)
         case "Lose":
-            return .red
+            return .red.opacity(0.9)
         case "Draw":
-            return .gray
+            return .orange.opacity(0.9)
         default:
-            return .black
+            return .white
         }
     }
     
