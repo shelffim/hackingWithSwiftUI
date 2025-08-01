@@ -65,8 +65,12 @@ struct ContentView: View {
             
             VStack {
                 Text(alertTitle)
+                    .font(.headline)
                 Text(alertMessage)
+                    .font(.title2)
+                    .foregroundColor(.blue)
             }
+            .padding()
             
             Spacer()
         }
