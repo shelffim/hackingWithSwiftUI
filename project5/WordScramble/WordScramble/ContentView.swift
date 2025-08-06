@@ -8,36 +8,48 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var usedWords = [String]()
+    @State private var rootWord = ""
+    @State private var newWord = ""
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                Section {
+                    TextField("Enter your word", text: $newWord)
+                        .textInputAutocapitalization(.never)
+                }
+                
+                Section {
+                    ForEach(usedWords, id: \.self) { word in
+                        HStack {
+                            Image(systemName: "\(word.count).circle")
+                            Text(word)
+                        }
+                    }
+                }
+            }
+            .navigationTitle(rootWord)
+            .onSubmit(addNewWord)
         }
-        .padding()
     }
     
-    func testStrings() {
-        let input = """
-            a
-            b
-            c
-            """
-        let letters = input.components(separatedBy: "\n")
-        let letter = letters.randomElement()
-        let trimmed = letter?.trimmingCharacters(in: .whitespacesAndNewlines)
+    func addNewWord() {
+        // lowercase and trim the word, to make sure we don't add duplicate words with case differences
+        let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
-        let word = "swift"
-        let checker = UITextChecker()
+        // exit if the ramaining string is empty
+        guard answer.count > 0 else { return }
         
-        let range = NSRange(location: 0, length: word.utf16.count)
+        // extra validation to come
         
-        let misspelledRange = checker.rangeOfMisspelledWord(in: word, range: range, startingAt: 0, wrap: false, language: "en")
-        
-        let allGood = misspelledRange.location == NSNotFound
+        withAnimation {
+            usedWords.insert(answer, at: 0)
+        }
+        newWord = ""
     }
+    
+    
 }
 
 #Preview {
