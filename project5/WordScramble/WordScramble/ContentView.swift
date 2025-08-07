@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var errorMessage = ""
     @State private var showingError = false
     
+    @State private var score = 0
     
     var body: some View {
         NavigationStack {
@@ -35,12 +36,34 @@ struct ContentView: View {
                 }
             }
             .navigationTitle(rootWord)
+            // challenge 2
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("New Word") {
+                        startGame()
+                    }
+                }
+            }
             .onSubmit(addNewWord)
             .onAppear(perform: startGame)
             .alert(errorTitle, isPresented: $showingError) {
                 Button("OK") { }
             } message: {
                 Text(errorMessage)
+            }
+            .overlay {
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Text("Score: \(score)")
+                            .font(.headline)
+                            .padding()
+                            .background(Color.blue.opacity(0.2))
+                            .cornerRadius(10)
+                            .padding()
+                    }
+                }
             }
         }
     }
@@ -51,6 +74,16 @@ struct ContentView: View {
         
         // exit if the ramaining string is empty
         guard answer.count > 0 else { return }
+        
+        // challenge 1
+        guard answer.count > 3 else {
+            wordError(title: "Word too short", message: "Words must be at least 3 letters long!")
+            return
+        }
+        guard answer != rootWord else {
+            wordError(title: "Word not allowed", message: "You can't use the start word!")
+            return
+        }
         
         guard isOriginal(word: answer) else {
             wordError(title: "Word used already", message: "Be more original")
@@ -67,6 +100,10 @@ struct ContentView: View {
             return
         }
         
+        // challenge 3
+        let wordScore = answer.count
+        score += wordScore
+        
         // extra validation to come
         
         withAnimation {
@@ -76,6 +113,10 @@ struct ContentView: View {
     }
     
     func startGame() {
+        // Reset score and used words for new game
+        score = 0
+        usedWords.removeAll()
+        
         // 1. Find the URL for start.txt in our app bundle
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             // 2. Load start.txt into a string
