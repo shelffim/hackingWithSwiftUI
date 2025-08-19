@@ -56,15 +56,18 @@ struct ContentView: View {
                     
                     ForEach(0..<3) { number in
                         Button {
-                            withAnimation(.spring(duration: 1, bounce: 0.5)) {
-                                choice = number
-                                flagTapped(choice)
-                                animationAmount += 360
+                            choice = number
+                            flagTapped(choice)
+                            if choice == number {
+                                withAnimation(.spring(duration: 1, bounce: 0.5)) {
+                                    animationAmount += 360
+                                }
                             }
                         } label: {
                             FlagImage(country: countries[number])
                         }
                         .rotation3DEffect(choice == number ? .degrees(animationAmount) : .degrees(0), axis: (x: 0, y: 1, z: 0))
+                        .opacity(choice == 3 || choice == number ? 1 : 0.25)
                     }
                 }
                 .frame(maxWidth: .infinity)
