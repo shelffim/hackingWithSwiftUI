@@ -68,6 +68,8 @@ struct ContentView: View {
                         }
                         .rotation3DEffect(choice == number ? .degrees(animationAmount) : .degrees(0), axis: (x: 0, y: 1, z: 0))
                         .opacity(choice == 3 || choice == number ? 1 : 0.25)
+                        .scaleEffect(choice == 3 || choice == number ? 1 : 0.7)
+                        .animation(.easeOut(duration: 0.3), value: choice)
                     }
                 }
                 .frame(maxWidth: .infinity)
