@@ -1,0 +1,150 @@
+////
+////  Solution.swift
+////  GuessTheFlag
+////
+////  This file contains the complete solution with flag animations
+////
+//
+//import SwiftUI
+//
+//struct FlagImage: View {
+//    let country: String
+//    
+//    var body: some View {
+//        Image(country)
+//            .clipShape(.capsule)
+//            .shadow(radius: 5)
+//    }
+//}
+//
+//struct ContentView: View {
+//    @State private var showingScore = false
+//    @State private var scoreTitle = ""
+//    @State private var score = 0
+//    @State private var message = ""
+//    @State private var round = 1
+//    
+//    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
+//    @State private var correctAnswer = Int.random(in: 0...2)
+//    
+//    // MARK: - 1. Animation State Variables
+//    @State private var animationAmount = 0.0
+//    @State private var opacityAmount = 1.0
+//    @State private var scaleAmount = 1.0
+//    @State private var selectedFlag: Int?
+//    
+//    var body: some View {
+//        ZStack {
+//            RadialGradient(stops: [
+//                .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.3),
+//                .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.3),
+//            ], center: .top, startRadius: 200, endRadius: 700)
+//                .ignoresSafeArea()
+//            
+//            VStack {
+//                Spacer()
+//                
+//                Text("Guess the Flag")
+//                    .font(.largeTitle.weight(.bold))
+//                    .foregroundStyle(.white)
+//                
+//                VStack(spacing: 15) {
+//                    VStack {
+//                        Text("Tap the flag of")
+//                            .font(.subheadline.weight(.heavy))
+//                            .foregroundStyle(.secondary)
+//                        Text(countries[correctAnswer])
+//                            .font(.largeTitle.weight(.semibold))
+//                    }
+//                    
+//                    ForEach(0..<3) { number in
+//                        Button {
+//                            // MARK: - 2. Flag Tap Animation
+//                            withAnimation(.easeInOut(duration: 1)) {
+//                                selectedFlag = number
+//                                animationAmount += 360
+//                                opacityAmount = 0.25
+//                                scaleAmount = 0.8
+//                            }
+//                            
+//                            // MARK: - 3. Delay for Score Alert
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                flagTapped(number)
+//                            }
+//                        } label: {
+//                            FlagImage(country: countries[number])
+//                        }
+//                        // MARK: - 4. Rotation Animation (360 degrees on Y axis)
+//                        .rotation3DEffect(
+//                            selectedFlag == number ? .degrees(animationAmount) : .degrees(0),
+//                            axis: (x: 0, y: 1, z: 0)
+//                        )
+//                        // MARK: - 5. Opacity Animation (fade out to 25%)
+//                        .opacity(selectedFlag == nil ? 1.0 : (selectedFlag == number ? 1.0 : opacityAmount))
+//                        // MARK: - 6. Scale Animation (scale down effect)
+//                        .scaleEffect(selectedFlag == nil ? 1.0 : (selectedFlag == number ? 1.0 : scaleAmount))
+//                    }
+//                }
+//                .frame(maxWidth: .infinity)
+//                .padding(.vertical, 20)
+//                .background(.regularMaterial)
+//                .clipShape(.rect(cornerRadius: 20))
+//                
+//                Spacer()
+//                Spacer()
+//                
+//                Text("Score: \(score)")
+//                    .foregroundStyle(.white)
+//                    .font(.title.bold())
+//                
+//                Spacer()
+//            }
+//            .padding()
+//        }
+//        .alert(scoreTitle, isPresented: $showingScore) {
+//            Button(round < 8 ? "Continue" : "Finish") {
+//                askQuestion()
+//                isReset()
+//            }
+//        } message: {
+//            Text("\(message)\nYour score is \(score) / \(round).")
+//        }
+//    }
+//    
+//    func isReset() {
+//        if round > 8 {
+//            score = 0
+//            round = 1
+//            scoreTitle = ""
+//            message = ""
+//        }
+//    }
+//    
+//    func flagTapped(_ number: Int) {
+//        if number == correctAnswer {
+//            scoreTitle = "Correct"
+//            score += 1
+//            message = "You got it right!"
+//        } else {
+//            scoreTitle = "Wrong"
+//            message = "Nope, it's \(countries[number])"
+//        }
+//        
+//        showingScore = true
+//    }
+//    
+//    func askQuestion() {
+//        countries.shuffle()
+//        correctAnswer = Int.random(in: 0...2)
+//        // MARK: - 7. Reset Animation States
+//        selectedFlag = nil
+//        animationAmount = 0.0
+//        opacityAmount = 1.0
+//        scaleAmount = 1.0
+//        round += 1
+//    }
+//}
+//
+//#Preview {
+//    ContentView()
+//}
