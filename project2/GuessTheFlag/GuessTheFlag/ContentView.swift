@@ -27,6 +27,9 @@ struct ContentView: View {
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "Ukraine", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
     
+    @State private var choice = 3
+    @State private var animationAmount = 0.0
+    
     var body: some View {
         ZStack {
             RadialGradient(stops: [
@@ -53,11 +56,15 @@ struct ContentView: View {
                     
                     ForEach(0..<3) { number in
                         Button {
-                            flagTapped(number)
+                            withAnimation(.spring(duration: 1, bounce: 0.5)) {
+                                choice = number
+                                flagTapped(choice)
+                                animationAmount += 360
+                            }
                         } label: {
                             FlagImage(country: countries[number])
-
                         }
+                        .rotation3DEffect(choice == number ? .degrees(animationAmount) : .degrees(0), axis: (x: 0, y: 1, z: 0))
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -112,6 +119,7 @@ struct ContentView: View {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
         round += 1
+        choice = 3
     }
     
 }
